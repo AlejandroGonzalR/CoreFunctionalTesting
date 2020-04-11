@@ -19,7 +19,7 @@ public class ValidateRequiredFields {
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", Constants.CHROME_DRIVER_PATH);
+        System.setProperty("webdriver.chrome.driver", Constants.DRIVER_PATH);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

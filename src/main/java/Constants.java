@@ -2,7 +2,7 @@ public class Constants {
 
     // Build constants
     public static String BASE_URL = "https://vuesimpleform.web.app/";
-    public static String CHROME_DRIVER_PATH = "src/main/resources/chromedriver";
+    public static String DRIVER_PATH = "src/main/resources/chromedriver";
 
     // Test constants
     public static String BASE_SUREFIRE_OUT_PATH = "test-output/";
