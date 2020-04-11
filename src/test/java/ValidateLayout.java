@@ -36,12 +36,13 @@ public class ValidateLayout {
     @Test
     public void layoutTest() {
         driver.get(Constants.BASE_URL);
-        assertEquals(driver.findElement(By.cssSelector("h1")).getText(),"Envia un Mensaje");
+        assertEquals(driver.findElement(By.cssSelector("h1")).getText(),"Send your message");
         assertTrue(isElementPresent(By.name("your-name")));
         assertTrue(isElementPresent(By.name("your-email")));
         assertTrue(isElementPresent(By.name("your-subject")));
         assertTrue(isElementPresent(By.name("your-message")));
-        assertTrue(isElementPresent(By.cssSelector("button.form-control-input")));
+        assertTrue(isElementPresent(By.cssSelector("button#submit")));
+        assertTrue(isElementPresent(By.cssSelector("button#reset")));
     }
 
     @AfterClass(alwaysRun = true)

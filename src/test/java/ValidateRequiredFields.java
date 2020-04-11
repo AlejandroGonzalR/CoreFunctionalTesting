@@ -16,6 +16,7 @@ public class ValidateRequiredFields {
 
     private WebDriver driver;
     private final StringBuffer verificationErrors = new StringBuffer();
+    private final String requiredInputText = "This field is required";
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
@@ -34,11 +35,11 @@ public class ValidateRequiredFields {
     @Test
     public void requiredFieldsTest() {
         driver.get(Constants.BASE_URL);
-        driver.findElement(By.cssSelector("button.form-control-input")).click();
-        assertEquals(driver.findElement(By.xpath("//div[@id='input-group-1']/div/span")).getAttribute("innerHTML"), "Campo requerido");
-        assertEquals(driver.findElement(By.xpath("//div[@id='input-group-2']/div/span")).getAttribute("innerHTML"), "Campo requerido");
-        assertEquals(driver.findElement(By.xpath("//div[@id='input-group-3']/div/span")).getAttribute("innerHTML"), "Campo requerido");
-        assertEquals(driver.findElement(By.xpath("//div[@id='input-group-4']/div/span")).getAttribute("innerHTML"), "Campo requerido");
+        driver.findElement(By.id("submit")).click();
+        assertEquals(driver.findElement(By.xpath("//div[@id='input-group-name']/div/span")).getAttribute("innerHTML"), requiredInputText);
+        assertEquals(driver.findElement(By.xpath("//div[@id='input-group-email']/div/span")).getAttribute("innerHTML"), requiredInputText);
+        assertEquals(driver.findElement(By.xpath("//div[@id='input-group-subject']/div/span")).getAttribute("innerHTML"), requiredInputText);
+        assertEquals(driver.findElement(By.xpath("//div[@id='input-group-message']/div/span")).getAttribute("innerHTML"), requiredInputText);
     }
 
     @AfterClass(alwaysRun = true)

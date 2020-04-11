@@ -1,13 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite thread-count="1" verbose="1" name="Gmail Suite" annotations="JDK" parallel="tests">
-
-    <test name="send-message">
-        <classes>
-            <class name="SendMessageTest"/>
-        </classes>
-    </test>
-
     <test name="validate-layout">
         <classes>
             <class name="ValidateLayout"/>
@@ -17,6 +10,12 @@
     <test name="required-fields">
         <classes>
             <class name="ValidateRequiredFields"/>
+        </classes>
+    </test>
+
+    <test name="send-message">
+        <classes>
+            <class name="SendMessageTest"/>
         </classes>
     </test>
 </suite>

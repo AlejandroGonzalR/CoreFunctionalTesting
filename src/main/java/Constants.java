@@ -1,7 +1,7 @@
 public class Constants {
 
     // Build constants
-    public static String BASE_URL = "https://vuesimpleform.web.app/";
+    public static String BASE_URL = "http://localhost:8080/";// "https://vuesimpleform.web.app/";
     public static String DRIVER_PATH = "src/main/resources/chromedriver";
 
     // Test constants

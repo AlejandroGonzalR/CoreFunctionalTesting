@@ -40,12 +40,12 @@ public class SendMessageTest {
         driver.findElement(By.name("your-email")).clear();
         driver.findElement(By.name("your-email")).sendKeys("alejandrogonzalr@gmail.com");
         driver.findElement(By.name("your-subject")).clear();
-        driver.findElement(By.name("your-subject")).sendKeys("Test Pruebas Funcionales con Selenium");
+        driver.findElement(By.name("your-subject")).sendKeys("Core functional tests with Selenium");
         driver.findElement(By.name("your-message")).clear();
-        driver.findElement(By.name("your-message")).sendKeys("Este es un mensaje de prueba");
-        driver.findElement(By.cssSelector("button.form-control-input")).click();
+        driver.findElement(By.name("your-message")).sendKeys("This is a test message");
+        driver.findElement(By.id("submit")).click();
 
-        assertEquals(driver.findElement(By.xpath("//div[@id='b-toaster-bottom-right']/descendant::div[@class='toast-body']")).getAttribute("innerHTML"), "Mensaje enviado satisfactoriamente.");
+        assertEquals(driver.findElement(By.xpath("//div[@id='b-toaster-bottom-right']/descendant::div[@class='toast-body']")).getAttribute("innerHTML"), "Message sent successfully");
     }
 
     @AfterClass(alwaysRun = true)
