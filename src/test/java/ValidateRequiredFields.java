@@ -15,28 +15,25 @@ import java.util.concurrent.TimeUnit;
 public class ValidateRequiredFields {
 
     private WebDriver driver;
-    private String baseUrl;
     private final StringBuffer verificationErrors = new StringBuffer();
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
-        String chromeDriverPath = "src/main/resources/chromedriver";
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+        System.setProperty("webdriver.chrome.driver", Constants.CHROME_DRIVER_PATH);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        baseUrl = "https://vuesimpleform.web.app/";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @BeforeTest
     public void setup(ITestContext ctx) {
         TestRunner runner = (TestRunner) ctx;
-        runner.setOutputDirectory("test-output/required-fields");
+        runner.setOutputDirectory(Constants.REQUIRED_FIELDS_PATH);
     }
 
     @Test
     public void requiredFieldsTest() {
-        driver.get(baseUrl);
+        driver.get(Constants.BASE_URL);
         driver.findElement(By.cssSelector("button.form-control-input")).click();
         assertEquals(driver.findElement(By.xpath("//div[@id='input-group-1']/div/span")).getAttribute("innerHTML"), "Campo requerido");
         assertEquals(driver.findElement(By.xpath("//div[@id='input-group-2']/div/span")).getAttribute("innerHTML"), "Campo requerido");

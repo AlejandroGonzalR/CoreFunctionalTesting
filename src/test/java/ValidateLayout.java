@@ -17,28 +17,25 @@ import java.util.concurrent.TimeUnit;
 public class ValidateLayout {
 
     private WebDriver driver;
-    private String baseUrl;
     private final StringBuffer verificationErrors = new StringBuffer();
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
-        String chromeDriverPath = "src/main/resources/chromedriver";
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+        System.setProperty("webdriver.chrome.driver", Constants.CHROME_DRIVER_PATH);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        baseUrl = "https://vuesimpleform.web.app/";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @BeforeTest
     public void setup(ITestContext ctx) {
         TestRunner runner = (TestRunner) ctx;
-        runner.setOutputDirectory("test-output/validate-layout");
+        runner.setOutputDirectory(Constants.VALIDATE_LAYOUT_PATH);
     }
 
     @Test
     public void layoutTest() {
-        driver.get(baseUrl);
+        driver.get(Constants.BASE_URL);
         assertEquals(driver.findElement(By.cssSelector("h1")).getText(),"Envia un Mensaje");
         assertTrue(isElementPresent(By.name("your-name")));
         assertTrue(isElementPresent(By.name("your-email")));

@@ -15,28 +15,25 @@ import java.util.concurrent.TimeUnit;
 public class SendMessageTest {
 
     private WebDriver driver;
-    private String baseUrl;
     private final StringBuffer verificationErrors = new StringBuffer();
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
-        String chromeDriverPath = "src/main/resources/chromedriver";
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+        System.setProperty("webdriver.chrome.driver", Constants.CHROME_DRIVER_PATH);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        baseUrl = "https://vuesimpleform.web.app/";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @BeforeTest
     public void setup(ITestContext ctx) {
         TestRunner runner = (TestRunner) ctx;
-        runner.setOutputDirectory("test-output/send-message");
+        runner.setOutputDirectory(Constants.SEND_MESSAGE_PATH);
     }
 
     @Test
     public void sendMessageTest() {
-        driver.get(baseUrl);
+        driver.get(Constants.BASE_URL);
 
         driver.findElement(By.name("your-name")).clear();
         driver.findElement(By.name("your-name")).sendKeys("Alejandro Gonzalez");
