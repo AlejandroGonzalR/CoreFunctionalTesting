@@ -1,0 +1,29 @@
+job('maven_dsl') {
+
+    description('Selenium dsl test project')
+
+    scm {
+        git('https://github.com/AlejandroGonzalR/CoreFunctionalTesting', 'master', { node -> node / 'extensions' << '' })
+    }
+  
+    steps {
+        maven {
+            mavenInstallation('jenkins-maven')
+            goals('-B -DskipTests clean package')
+        }
+        maven {
+            mavenInstallation('jenkins-maven')
+            goals('test')
+        }
+        shell('''
+            echo Running the jar...
+            java -jar /var/jenkins_home/workspace/maven-job/target/my-app-1.0-SNAPSHOT.jar
+        ''')
+    }
+
+    publishers {
+        archiveArtifacts('target/*.jar')
+        archiveJunit('target/surefire-reports/*.xml')
+        mailer('alejandrogonzalr@gmail.com', true, true)
+    }
+}
